@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'TitleFont';
+    src: url('/assets/fonts/Alphazet-SemiBold.woff2') format('woff2'),
+         url('/assets/fonts/Alphazet-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    src: url('/assets/fonts/Alphazet-Light.woff2') format('woff2'),
+         url('/assets/fonts/Alphazet-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@property --ink {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #332a24;
+}
+
+@property --paper {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #fff8ed;
+}
+
+@property --line {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #d4cbbe;
+}
+
+:root {
+    color-scheme: light;
+    --blue:         #0d50d5;
+    --gold:         #cdff35;
+    --coral:        #ff4430;
+    --ink:          #332a24;
+    --staticink:    #332a24;
+    --paper:        #eee7dc;
+    --staticpaper:  #eee7dc;
+    --blue50:       #0d50d550;
+    --gold50:       #cdff3550;
+    --coral50:      #ff443050;
+    --ink50:        #332a2450;
+    --staticink50:        #332a2450;
+    --paper50:      #fff8ed50;
+    --staticpaper50:      #fff8ed50;
+    --line: #dbd6cb;
+    transition: --ink 400ms ease, --paper 400ms ease, --line 400ms ease;
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    color: var(--ink);
+    background: var(--paper);
+}
+
+:root[data-theme='dark'] {
+    color-scheme: dark;
+    --ink: #fff8ed;
+    --ink50: #fff8ed50;
+    --paper: #171923;
+    --paper50: #17192350;
+    --line: #212533;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        transition: none;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}  
+
+html {
+    min-width: 320px;
+    min-height: 100svh;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--paper);
+    /*background-image: radial-gradient(var(--line) 1px, transparent 0.7px);*/
+    background-size: calc(50% / 16) calc(50% / 9);
+}
+
+body::after {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    mix-blend-mode: multiply;
+    content: '';
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+a {
+    color: inherit;
+}

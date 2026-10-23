@@ -1,0 +1,403 @@
+@font-face {
+    font-family: 'TitleFont';
+    src: url('/assets/fonts/Alphazet-SemiBold.woff2') format('woff2'),
+         url('/assets/fonts/Alphazet-SemiBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    src: url('/assets/fonts/Alphazet-Light.woff2') format('woff2'),
+         url('/assets/fonts/Alphazet-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: light;
+    --icon: url('assets/images/osd\ logo\ icon.png');
+    --logo: url('assets/images/osd\ logo\ icon.png');
+    --logo_long: url('assets/images/osd\ logo\ icon.png');
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    color: var(--ink);
+    background: var(--paper);
+}
+
+#root {
+    min-height: 100svh;
+}
+
+.app-shell {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+
+#apply {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+line {
+    border-bottom: 1px solid var(--ink);
+    width: 100%;
+    opacity: 0.2;
+}
+
+.arrow-field {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bento-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 5px;
+    padding: 0px;
+    max-height: 100vh;
+    z-index: 1;
+}
+
+.bento-grid .bento-section {
+    min-width: 0;
+    min-height: 0;
+    border: 0px solid currentColor;
+    border-radius: 5px;
+    padding: 16px;
+    display: flex;
+}
+
+.bento-grid section:first-child {
+    grid-row: span 2;
+}
+
+#title {
+    grid-area: 2 / 11 / 4 / 15;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue);
+    color: var(--staticpaper);
+}
+#title .theme-toggle {
+    --theme-icon-scale: 1.5;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 0;
+    padding: 12px;
+    background: transparent;
+    cursor: pointer;
+}
+#title .theme-toggle img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transform: scale(var(--theme-icon-scale));
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+}
+#title .theme-toggle:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 50%;
+}
+#title .title-logo-outline {
+    position: absolute;
+    right: -100px;
+    bottom: -140px;
+    width: min(70%, 360px);
+    aspect-ratio: 1;
+    object-fit: contain;
+    opacity: 1;
+    pointer-events: none;
+}
+#title #title-text {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    line-height: 0.9;
+    translate: 0.25em;
+}
+#title #space-text {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    color: var(--gold);
+    font-size: 2rem;
+    line-height: 0.9;
+}
+#title #desc{
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    text-align: right;
+    font-size: 1.5rem;
+    line-height: 0.7;
+}
+#title .title-button {
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 2rem;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    margin-left: 0.1em;
+    line-height: 0.7;
+    translate: 0px 4px;
+    transition: translate 0.1s ease-out;
+}
+#title .title-button:hover{
+    translate: 3px 1px;
+    transition: translate 0.1s ease-out;
+}
+
+#projects-title-panel {
+    grid-area: 2 / 3 / 3 / 11;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    align-items: center;
+    background-color: var(--line);
+    color: var(--ink);
+}
+#projects-grid {
+    grid-area: 3 / 3 / 9 / 11;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--gold);
+    color: var(--ink);
+
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 16px;
+}
+
+#projects-featured {
+    grid-area: 1 / 1 / 4 / 9;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--gold);
+    color: var(--staticink);
+}
+#projects-recent {
+    grid-area: 4 / 1 / 7 / 5;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--gold);
+    color: var(--staticink);
+}
+#projects-indev {
+    grid-area: 4 / 5 / 6 / 9;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--gold);
+    color: var(--staticink);
+}
+#projects-upcoming {
+    grid-area: 6 / 5 / 7 / 9;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--gold);
+    color: var(--staticink);
+}
+
+.projects-title{
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    border-bottom: 1px solid var(--staticink50);
+}
+.projects-name{
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    margin-left: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+.projects-body{
+    white-space: pre-line;
+    max-height: calc(100%);
+    overflow: scroll;
+    padding-top: 0.5em;
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    font-size: 0.85rem;
+    -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+}
+.projects-button{
+    display: inline-block;
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: var(--staticink);
+    font-size: 1.5rem;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    translate: 0px 4px;
+    margin-left: auto;
+    transition: translate 0.1s ease-out;
+}
+.projects-button:hover{
+    translate: 3px 1px;
+    transition: translate 0.1s ease-out;
+}
+
+#contribute-title-panel {
+    grid-area: 4 / 11 / 5 / 15;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    align-items: center;
+    background-color: var(--line);
+    color: var(--ink);
+}
+#contribute {
+    grid-area: 5 / 11 / 9 / 15;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    font-size: 0.85rem;
+    flex-direction: column;
+    color: var(--staticink);
+    background-color: var(--coral);
+}
+
+#bold {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+}
+
+#contribute button {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--staticink);
+    color: var(--coral);
+    cursor: pointer;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    transition: bottom 0.1s ease-out;
+}
+#contribute button:hover {
+    bottom: 18px;
+    transition: bottom 0.1s ease-out;
+}
+
+.version{
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    color: var(--line);
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 0.7;
+    padding: 8px;
+}
+
+@media (max-width: 1300px) {
+    .bento-grid {
+        grid-template-columns: 1fr minmax(0, 5fr) 1fr;
+        grid-template-rows: repeat(6, auto);
+        max-height: none;
+        gap: 8px;
+        padding-bottom: 32px;
+    }
+
+    .version       { grid-area: 1 / 2 / 2 / 3; }
+    #title         { grid-area: 2 / 2 / 3 / 3; min-height: 220px; }
+    #projects-title-panel   { grid-area: 3 / 2 / 4 / 3; }
+    #projects-grid          { grid-area: 4 / 2 / 5 / 3; }
+    #contribute-title-panel { grid-area: 5 / 2 / 6 / 3; }
+    #contribute    { grid-area: 6 / 2 / 7 / 3; padding-bottom: 80px; }
+
+    #projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: none;
+        grid-auto-rows: auto;
+    }
+    #projects-featured,
+    #projects-recent,
+    #projects-indev,
+    #projects-upcoming {
+        grid-area: auto;
+    }
+    #projects-featured,
+    #projects-upcoming {
+        grid-column: 1 / -1;
+    }
+
+    .projects-body {
+        max-height: none;
+        overflow: visible;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .bento-grid {
+        grid-template-columns: 12px minmax(0, 1fr) 12px;
+        gap: 8px;
+    }
+
+    #title { min-height: 200px; }
+
+    #projects-title-panel,
+    #contribute-title-panel {
+        font-size: 1.5rem;
+    }
+
+    #projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+    #projects-featured,
+    #projects-recent,
+    #projects-indev,
+    #projects-upcoming {
+        grid-column: 1 / -1;
+    }
+
+    .projects-title {
+        flex-wrap: wrap;
+        font-size: 1.1rem;
+    }
+    .projects-name {
+        font-size: 1.1rem;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+    .projects-button {
+        font-size: 1.25rem;
+    }
+
+    #contribute {
+        font-size: 0.8rem;
+    }
+}
